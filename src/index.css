@@ -129,7 +129,7 @@ a {
     align-items: center;
 }
 
-.container-profile, .container-top-artists {
+.container-profile, .container-top-artists, .container-top-tracks, .container-recent, .container-playlist {
     position: absolute;
     top: 0;
     right: 0;
@@ -209,6 +209,12 @@ a {
     cursor: pointer;
 }
 
+
+.logout-button:hover {
+    background-color: #1cb954;
+    border: 1px solid transparent;
+}
+
 .container-top-items-profile {
     display: flex;
     justify-content: space-between;
@@ -240,6 +246,11 @@ a {
     padding: 5px 15px;
     letter-spacing: 1px;
     cursor: pointer;
+}
+
+.see-more-button:hover {
+    background-color: #1cb954;
+    border: 1px solid transparent;
 }
 
 .container-artists-list-profile, .container-tracks-list-profile {
@@ -286,7 +297,7 @@ a {
     border-radius: 50%;
 }
 
-.container-top-artists, .container-top-tracks {
+.container-top-artists, .container-top-tracks, .container-recent, .container-playlist {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -302,7 +313,7 @@ a {
     padding: 20px 0;
 }
 
-.top-artists-text, .top-tracks-text {
+.top-artists-text, .top-tracks-text, .recent-header-text, .playlist-header-text {
     font-size: 24px;
     font-weight: 500;
 }
@@ -319,6 +330,14 @@ a {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 25px;
+    margin-bottom: 50px;
+}
+
+.container-playlist-main {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
     margin-bottom: 50px;
 }
 
@@ -346,38 +365,59 @@ a {
     color: white;
 }
 
-.top-tracks-header {
+.top-tracks-header, .recent-header, .playlist-header-text {
     width: 60%;
 }
 
-.container-tracks-main {
+.recent-header, .playlist-header-text {
+    padding: 70px 0 50px;
+}
+
+.container-tracks-main, .container-recent-main {
     width: 60%;
     margin-bottom: 50px;
 }
 
-.track-item {
+.track-item, .recent-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
 }
 
-.track-photo {
+.track-photo, .recent-photo {
     width: 50px;
 }
 
-.track-main {
+.track-main, .recent-main {
     display: flex;
     font-size: 16px;
     align-items: center;
     gap: 20px;
 }
 
-.track-info {
+.track-info, .recent-info {
     color: gray;
 }
 
-.track-duration {
+.track-duration, .recent-duration {
     font-size: 16px;
+    color: gray;
+}
+
+.playlist-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.playlist-image {
+    width: 225px;
+    margin-bottom: 10px;
+}
+
+.playlist-num {
+    font-size: 12px;
+    text-transform: uppercase;
     color: gray;
 }

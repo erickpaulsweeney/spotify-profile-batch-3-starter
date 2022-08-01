@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar";
 import { setUser, setFollowers, setFollowing, setArtists, setTracks, setPlaylists, setRecent, setSelected } from "../slices/spotifySlice";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
     const data = useSelector(state => state.spotify);
@@ -14,6 +15,7 @@ function Profile() {
     const playlists = data.playlists;
     const recent = data.recent;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const hash = window.location.hash;
@@ -147,6 +149,11 @@ function Profile() {
         console.log(data);
     }
 
+    function handleLogout() {
+        localStorage.clear();
+        navigate("/");
+    }
+
     return (
         <div className="container-main">
             <NavBar />
@@ -171,7 +178,7 @@ function Profile() {
                             <div className="playlists-text">Playlists</div>
                         </div>
                     </div>
-                    <button className="logout-button">Logout</button>
+                    <button className="logout-button" onClick={handleLogout}>Logout</button>
                 </div>
                 <div className="container-top-items-profile">
                     <div className="container-top-artists-profile">

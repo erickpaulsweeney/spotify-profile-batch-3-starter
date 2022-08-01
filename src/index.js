@@ -8,6 +8,8 @@ import store from './store';
 import Profile from "./components/Profile"
 import TopArtists from './components/TopArtists';
 import TopTracks from './components/TopTracks';
+import Recent from './components/Recent';
+import Playlists from './components/Playlists';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,8 +20,8 @@ root.render(
                 <Route path="/profile"  element={<Profile />}/>
                 <Route path="/top-artists" element={<TopArtists />} />
                 <Route path="/top-tracks" element={<TopTracks />} />
-                <Route path="/recent" />
-                <Route path="/playlists" />
+                <Route path="/recent" element={<Recent />} />
+                <Route path="/playlists" element={<Playlists />} />
             </Routes>
         </BrowserRouter>
     </Provider>

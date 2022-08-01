@@ -40,18 +40,23 @@ function NavBar() {
                     </div>
                 </Link>
 
-                <div className={data.selected === 'recent' ? 'recent-button selected' : 'recent-button'} onClick={() => {
-                    dispatch(setSelected('recent'));
-                }}>
-                    <img src="/images/recent.png" alt="Track icon" className="track-icon" />
-                    <div className="track-text">Recent</div>
-                </div>
-                <div className={data.selected === 'playlists' ? 'tracks-button selected' : 'tracks-button'} onClick={() => {
-                    dispatch(setSelected('playlists'));
-                }}>
-                    <img src="/images/playlist.png" alt="Track icon" className="track-icon" />
-                    <div className="track-text">Playlists</div>
-                </div>
+                <Link to="/recent">
+                    <div className={data.selected === 'recent' ? 'recent-button selected' : 'recent-button'} onClick={() => {
+                        dispatch(setSelected('recent'));
+                    }}>
+                        <img src="/images/recent.png" alt="Track icon" className="track-icon" />
+                        <div className="track-text">Recent</div>
+                    </div>
+                </Link>
+
+                <Link to="/playlists">
+                    <div className={data.selected === 'playlists' ? 'tracks-button selected' : 'tracks-button'} onClick={() => {
+                        dispatch(setSelected('playlists'));
+                    }}>
+                        <img src="/images/playlist.png" alt="Track icon" className="track-icon" />
+                        <div className="track-text">Playlists</div>
+                    </div>
+                </Link>
             </div>
 
             <div className="container-github-icon">
