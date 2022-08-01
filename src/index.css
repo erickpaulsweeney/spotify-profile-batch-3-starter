@@ -1,5 +1,383 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #181818;
+    color: white;
+}
+
+img {
+    width: 100%;
+}
+
+.container-login {
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-text {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}
+
+.login-button {
+    background-color: #1cb954;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.loading {
+    color: white;
+    font-size: 50px;
+}
+
+.container-navbar {
+    height: 100vh;
+    width: 5%;
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 20px 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-spotify-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-button, .artists-button, .tracks-button, .recent-button {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    border-left: 5px solid transparent;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #181818;
+    border-left: 5px solid #1cb954;
+    cursor: default;
+}
+
+.profile-text, .artist-text, .track-text, .recent-text, .playlists-text {
+    font-size: 12px;
+    color: gray;
+}
+
+.profile-icon, .artist-icon, .track-icon, .recent-icon, .playlists-icon {
+    width: 20%;
+    filter: invert(50%);
+}
+
+.container-github-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.github-icon {
+    width: 100%;
+    filter: invert(50%);
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 92%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-profile, .container-top-artists {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.container-profile::-webkit-scrollbar {
+    display: none;
+}
+
+.container-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px;
+    margin-bottom: 70px;
+}
+
+.container-avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 120px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-bottom: 30px;
+}
+
+.user-name {
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.info-bar {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.followers-div, .following-div, .playlists-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+}
+
+.followers-num, .following-num, .playlists-num {
+    color: #1cb954;
+    font-weight: 600;
+}
+
+.followers-text, .following-text, .playlists-text {
+    color: gray;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.logout-button {
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.container-top-items-profile {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    width: 70%;
+    margin-bottom: 50px;
+}
+
+.container-top-artists-profile, .container-top-tracks-profile {
+    width: 45%;
+}
+
+.top-artists-header-profile, .top-tracks-header-profile {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.see-more-button {
+    font: inherit;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 5px 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.container-artists-list-profile, .container-tracks-list-profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-item-profile {
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.track-item-profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.track-main-profile {
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    gap: 20px;
+}
+
+.track-info-profile {
+    color: gray;
+}
+
+.track-duration-profile {
+    font-size: 12px;
+    color: gray;
+}
+
+.artist-photo-profile, .track-photo-profile {
+    width: 50px;
+}
+
+.artist-photo-profile {
+    border-radius: 50%;
+}
+
+.container-top-artists, .container-top-tracks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-artists-header, .top-tracks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    padding: 20px 0;
+}
+
+.top-artists-text, .top-tracks-text {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.container-artists-main {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.top-artist-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.artist-photo {
+    width: 225px;
+    border-radius: 50%;
+}
+
+.longterm-button, .mediumterm-button, .shortterm-button {
+    color: gray;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.selected-artists, .selected-tracks {
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+.top-tracks-header {
+    width: 60%;
+}
+
+.container-tracks-main {
+    width: 60%;
+    margin-bottom: 50px;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.track-photo {
+    width: 50px;
+}
+
+.track-main {
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    gap: 20px;
+}
+
+.track-info {
+    color: gray;
+}
+
+.track-duration {
+    font-size: 16px;
+    color: gray;
 }
