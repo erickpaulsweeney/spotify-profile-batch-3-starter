@@ -92,12 +92,6 @@ a {
     cursor: pointer;
 }
 
-.selected {
-    background-color: #181818;
-    border-left: 5px solid #1cb954;
-    cursor: default;
-}
-
 .profile-text, .artist-text, .track-text, .recent-text, .playlists-text {
     font-size: 12px;
     color: gray;
@@ -106,6 +100,20 @@ a {
 .profile-icon, .artist-icon, .track-icon, .recent-icon, .playlists-icon {
     width: 20%;
     filter: invert(50%);
+}
+
+.selected {
+    background-color: #181818;
+    border-left: 5px solid #1cb954;
+    cursor: default;
+}
+
+.selected>img {
+    filter: invert(100%);
+}
+
+.selected>div {
+    color: white;
 }
 
 .container-github-icon {

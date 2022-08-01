@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar";
-import { setUser, setFollowers, setFollowing, setArtists, setTracks, setPlaylists, setRecent, setSelected } from "../slices/spotifySlice";
+import { setSelected, getUserData, getFollowingData, getPlaylistData, getRecentData, getLongTermArtistData, getMediumTermArtistData, getShortTermArtistData, getLongTermTrackData, getMediumTermTrackData, getShortTermTrackData } from "../slices/spotifySlice";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -33,120 +33,17 @@ function Profile() {
         // eslint-disable-next-line
     }, [])
 
-    async function fetchData(input) {
-        // user data
-        let userResponse = await fetch('https://api.spotify.com/v1/me', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let userData = await userResponse.json();
-
-        // following
-        let followingResponse = await fetch('https://api.spotify.com/v1/me/following?type=artist', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let followingData = await followingResponse.json();
-
-        // playlists
-        let playlistResponse = await fetch('https://api.spotify.com/v1/me/playlists', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let playlistData = await playlistResponse.json();
-
-        // recent tracks
-        let recentResponse = await fetch('https://api.spotify.com/v1/me/player/recently-played', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let recentData = await recentResponse.json();
-
-        // top artists
-        let longTermArtistResponse = await fetch('https://api.spotify.com/v1/me/top/artists?time_range=long_term', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let longTermArtistData = await longTermArtistResponse.json();
-
-        let mediumTermArtistResponse = await fetch('https://api.spotify.com/v1/me/top/artists?time_range=medium_term', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let mediumTermArtistData = await mediumTermArtistResponse.json();
-
-        let shortTermArtistResponse = await fetch('https://api.spotify.com/v1/me/top/artists?time_range=short_term', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let shortTermArtistData = await shortTermArtistResponse.json();
-
-        // top tracks
-        let longTermTrackResponse = await fetch('https://api.spotify.com/v1/me/top/tracks?time_range=long_term', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let longTermTrackData = await longTermTrackResponse.json();
-
-        let mediumTermTrackResponse = await fetch('https://api.spotify.com/v1/me/top/tracks?time_range=medium_term', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let mediumTermTrackData = await mediumTermTrackResponse.json();
-
-        let shortTermTrackResponse = await fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${input}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        let shortTermTrackData = await shortTermTrackResponse.json();
-
-        let userPayload = { name: userData.display_name, photo: userData.images[0].url };
-        let followersPayload = userData.followers.total;
-        let followingPayload = followingData.artists.items;
-        let playlistPayload = playlistData.items;
-        let artistPayload = { longTerm: longTermArtistData.items, mediumTerm: mediumTermArtistData.items, shortTerm: shortTermArtistData.items };
-        let trackPayload = { longTerm: longTermTrackData.items, mediumTerm: mediumTermTrackData.items, shortTerm: shortTermTrackData.items };
-        let recentPayload = recentData.items;
-
-        dispatch(setUser(userPayload));
-        dispatch(setFollowers(followersPayload));
-        dispatch(setFollowing(followingPayload));
-        dispatch(setPlaylists(playlistPayload));
-        dispatch(setArtists(artistPayload));
-        dispatch(setTracks(trackPayload));
-        dispatch(setRecent(recentPayload));
-        // console.log(data);
-        console.log(data);
+    function fetchData(token) {
+        dispatch(getUserData(token));
+        dispatch(getFollowingData(token));
+        dispatch(getPlaylistData(token));
+        dispatch(getRecentData(token));
+        dispatch(getLongTermArtistData(token));
+        dispatch(getMediumTermArtistData(token));
+        dispatch(getShortTermArtistData(token));
+        dispatch(getLongTermTrackData(token));
+        dispatch(getMediumTermTrackData(token));
+        dispatch(getShortTermTrackData(token));
     }
 
     function handleLogout() {
@@ -157,8 +54,9 @@ function Profile() {
     return (
         <div className="container-main">
             <NavBar />
-            {!(user && followers && following && artists && tracks && playlists && recent) && <div className="loading">Loading...</div>}
-            {(user && followers && following && artists && tracks && playlists && recent) && <div className="container-profile">
+            {/* {console.log(data)} */}
+            {(user === null && followers === null && following === null && artists.shortTerm === null && artists.mediumTerm === null && artists.longTerm === null && tracks.shortTerm === null && playlists === null && recent === null) && <div className="loading">Loading...</div>}
+            {(user !== null && followers !== null && following !== null && artists.shortTerm !== null && artists.mediumTerm !== null && artists.longTerm !== null && tracks.shortTerm !== null && playlists !== null && recent !== null) && <div className="container-profile">
                 <div className="container-info">
                     <div className="container-avatar">
                         <img src={user.photo} className="user-avatar" alt="User avatar" />
@@ -170,7 +68,7 @@ function Profile() {
                             <div className="followers-text">Followers</div>
                         </div>
                         <div className="following-div">
-                            <div className="following-num">{following.length}</div>
+                            <div className="following-num">{following}</div>
                             <div className="following-text">Following</div>
                         </div>
                         <div className="playlists-div">
