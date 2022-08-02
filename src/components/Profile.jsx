@@ -2,34 +2,21 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar";
 import { setSelected, getUserData, getFollowingData, getPlaylistData, getRecentData, getLongTermArtistData, getMediumTermArtistData, getShortTermArtistData, getLongTermTrackData, getMediumTermTrackData, getShortTermTrackData } from "../slices/spotifySlice";
+import { clearTokens } from "../slices/authSlice";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Profile() {
-    const data = useSelector(state => state.spotify);
-    const user = data.user;
-    const followers = data.followers;
-    const following = data.following;
-    const artists = data.top_artists;
-    const tracks = data.top_tracks;
-    const playlists = data.playlists;
-    const recent = data.recent;
+    const { user, followers, following, artists, tracks, playlists, recent } = useSelector(state => state.spotify);
+    const { accessToken } = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const hash = window.location.hash;
-        let token = window.localStorage.getItem('token');
-
-        if (!token && hash) {
-            token = hash.substring(1).split("&").find(el => el.startsWith("access_token")).split("=")[1];
-            localStorage.setItem('token', token);
-            window.location.hash = '';
-            fetchData(token);
+        if (accessToken) {
+            fetchData(accessToken);
         }
-        else {
-            fetchData(token);
-        }
+        else navigate("/");
         // eslint-disable-next-line
     }, [])
 
@@ -47,6 +34,7 @@ function Profile() {
     }
 
     function handleLogout() {
+        dispatch(clearTokens());
         localStorage.clear();
         navigate("/");
     }

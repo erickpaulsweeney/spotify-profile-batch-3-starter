@@ -10,6 +10,7 @@ import TopArtists from './components/TopArtists';
 import TopTracks from './components/TopTracks';
 import Recent from './components/Recent';
 import Playlists from './components/Playlists';
+import Validate from './components/Validate';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
+                <Route path="/validate" element={<Validate />} />
                 <Route path="/profile"  element={<Profile />}/>
                 <Route path="/top-artists" element={<TopArtists />} />
                 <Route path="/top-tracks" element={<TopTracks />} />

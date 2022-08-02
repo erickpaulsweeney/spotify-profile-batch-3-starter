@@ -44,7 +44,7 @@ function TopTracks() {
                     </div>
                 </div>
                 <div className="container-tracks-main">
-                    {data.top_tracks && data.top_tracks[filter].map(el => <div className="track-item" key={el.id}>
+                    {data.tracks && data.tracks[filter].map(el => <div className="track-item" key={el.id}>
                         <div className="track-main">
                             <img src={el.album.images[2].url} className="track-photo" alt="" />
                             <div className="track-info-div">

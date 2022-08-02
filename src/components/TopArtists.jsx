@@ -44,7 +44,7 @@ function TopArtists() {
                     </div>
                 </div>
                 <div className="container-artists-main">
-                    {data.top_artists && data.top_artists[filter].map(el => <div key={el.id} className="top-artist-item">
+                    {data.artists && data.artists[filter].map(el => <div key={el.id} className="top-artist-item">
                         <img src={el.images[0].url} className="artist-photo" alt={el.name} />
                         <div className="artist-name">{el.name}</div>
                     </div>)}
