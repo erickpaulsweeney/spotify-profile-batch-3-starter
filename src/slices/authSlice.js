@@ -13,7 +13,7 @@ export const getToken = createAsyncThunk('auth/getToken', async (code) => {
         body: new URLSearchParams({
             'grant_type': 'authorization_code',
             'code': code,
-            'redirect_uri': 'http://localhost:3000/validate'
+            'redirect_uri': 'https://delicate-torrone-dc44fb.netlify.app/validate'
         }).toString()
     });
 
