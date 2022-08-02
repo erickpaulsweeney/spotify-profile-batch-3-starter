@@ -1,1 +1,7 @@
-/*      ./src/index.js
+/*              ./src/index.js
+/validate       ./src/components/Validate.jsx
+/profile        ./src/components/Profile.jsx
+/top-artists    ./src/components/TopArtists.jsx
+/top-tracks     ./src/components/TopTracks.jsx
+/recent         ./src/components/Recent.jsx
+/playlists      ./src/components/Playlists.jsx
