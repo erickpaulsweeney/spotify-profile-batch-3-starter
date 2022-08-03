@@ -120,7 +120,7 @@ const spotifySlice = createSlice({
     extraReducers: {
         [getUserData.fulfilled] : (state, action) => {
             console.log(action.payload)
-            let photoLink = '/images/user.png';
+            let photoLink = '../public/images/user.png';
             let userObj = { name: action.payload.display_name, photo: photoLink };
             let followersVal = action.payload.followers.total;
             state.user = userObj;
