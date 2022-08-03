@@ -119,8 +119,7 @@ const spotifySlice = createSlice({
     }, 
     extraReducers: {
         [getUserData.fulfilled] : (state, action) => {
-            console.log(action.payload)
-            let photoLink = 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png';
+            let photoLink = (action.payload.images && action.payload.images.length > 0) ? action.payload.images[0].url : 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png';
             let userObj = { name: action.payload.display_name, photo: photoLink };
             let followersVal = action.payload.followers.total;
             state.user = userObj;

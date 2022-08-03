@@ -47,7 +47,7 @@ function Profile() {
             {(user !== null && followers !== null && following !== null && artists.shortTerm !== null && artists.mediumTerm !== null && artists.longTerm !== null && tracks.shortTerm !== null && playlists !== null && recent !== null) && <div className="container-profile">
                 <div className="container-info">
                     <div className="container-avatar">
-                        <img src={user.photo} className="user-avatar" alt="User avatar" />
+                        <img src={user.photo} className="user-avatar" alt="User avatar" style={{ filter: user.photo === 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' && 'invert(50%)' }} />
                         <div className="user-name">{user.name}</div>
                     </div>
                     <div className="info-bar">
