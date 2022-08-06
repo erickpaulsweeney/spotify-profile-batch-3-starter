@@ -1,11 +1,12 @@
 import NavBar from "./NavBar";
 import { useSelector } from "react-redux/es/exports";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Recent() {
     const data = useSelector(state => state.spotify);
     const navigate = useNavigate();
+    // eslint-disable-next-line
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {

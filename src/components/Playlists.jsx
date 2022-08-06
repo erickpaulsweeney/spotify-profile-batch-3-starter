@@ -1,11 +1,12 @@
 import NavBar from "./NavBar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Playlists() {
     const data = useSelector(state => state.spotify);
     const navigate = useNavigate();
+    // eslint-disable-next-line
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {

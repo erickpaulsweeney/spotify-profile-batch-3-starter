@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar";
 import { setSelected, getUserData, getFollowingData, getPlaylistData, getRecentData, getLongTermArtistData, getMediumTermArtistData, getShortTermArtistData, getLongTermTrackData, getMediumTermTrackData, getShortTermTrackData } from "../slices/spotifySlice";
@@ -11,20 +11,12 @@ function Profile() {
     const { accessToken } = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    let [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        let fetch = async () => {
-            if (accessToken) {
-                await fetchData(accessToken);
-            }
-            else navigate("/");
-            Object.keys(data).forEach(key => {
-                if (data[key] === null) navigate('/profile');
-            });
-            setLoading(false);
+        if (accessToken) {
+            fetchData(accessToken);
         }
-        fetch();
+        else navigate("/");
         // eslint-disable-next-line
     }, [])
 

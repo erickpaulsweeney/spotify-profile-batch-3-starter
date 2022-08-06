@@ -8,6 +8,7 @@ function TopTracks() {
     const navigate = useNavigate();
 
     let [filter, setFilter] = useState('longTerm');
+    // eslint-disable-next-line
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
