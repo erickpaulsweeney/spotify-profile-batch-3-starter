@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
     const CLIENT_ID = '932e9c02907842deb18951e39c6f472e';
-    const REDIRECT_URI = 'https://delicate-torrone-dc44fb.netlify.app/validate';
+    const REDIRECT_URI = 'https://spotify-profile-mern.netlify.app/validate';
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
     const RESPONSE_TYPE = 'code';
     const SCOPE = 'user-follow-read user-top-read playlist-read-private user-read-recently-played';
