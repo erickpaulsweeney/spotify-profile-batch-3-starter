@@ -2,11 +2,10 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-console.log(process.env.NODE_ENV);
-
 function App() {
+    const isProd = process.env.NODE_ENV === 'production';
     const CLIENT_ID = '932e9c02907842deb18951e39c6f472e';
-    const REDIRECT_URI = 'http://localhost:3000/validate';
+    const REDIRECT_URI = isProd ? 'https://spotify-profile-mern.netlify.app/validate' : 'http://localhost:3000/validate';
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
     const RESPONSE_TYPE = 'code';
     const SCOPE = 'user-follow-read user-top-read playlist-read-private user-read-recently-played';
