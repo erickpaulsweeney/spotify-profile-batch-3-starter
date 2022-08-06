@@ -24,8 +24,8 @@ function Playlists() {
             <div className="container-playlist">
                 <div className="playlist-header-text">Your Playlists</div>
                 <div className="container-playlist-main">
-                    {data.playlists && data.playlists.map(el => <div key={el.id} className="playlist-item" style={{ backgroundColor: !el.images && 'gray' }}>
-                        <img src={el.images ? el.images[0].url : '/images/tracks.png'} className="playlist-image" alt={el.name} />
+                    {data.playlists && data.playlists.map(el => <div key={el.id} className="playlist-item" style={{ backgroundColor: !el.images?.[0] && 'gray' }}>
+                        <img src={el.images?.[0] ? el.images[0]?.url : '/images/tracks.png'} className="playlist-image" alt={el.name} />
                         <div className="playlist-name">{el.name}</div>
                         <div className="playlist-num">{el.tracks.total} tracks</div>
                     </div>)}
