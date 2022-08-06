@@ -23,7 +23,7 @@ function TopTracks() {
     return (
         <div className="container-main">
             <NavBar />
-            <div className="container-top-tracks">
+            {!loading && <div className="container-top-tracks">
                 <div className="top-tracks-header">
                     <div className="top-tracks-text">Top Tracks</div>
                     <div className="filter-group">
@@ -59,7 +59,7 @@ function TopTracks() {
                         <div className="track-duration">{`${Math.floor(el.duration_ms / 60 / 1000)}:${((Math.floor(el.duration_ms / 1000)) % 60).toString().padStart(2, '0')}`}</div>
                     </div>)}
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }
