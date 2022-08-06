@@ -6,13 +6,16 @@ import { useNavigate } from "react-router-dom";
 function Recent() {
     const data = useSelector(state => state.spotify);
     const navigate = useNavigate();
+    let [loading, setLoading] = useState(true);
 
     useEffect(() => {
         Object.keys(data).forEach(key => {
             if (data[key] === null) navigate('/profile');
         });
+        setLoading(false);
         // eslint-disable-next-line
     }, [])
+
 
     return (
         <div className="container-main">
