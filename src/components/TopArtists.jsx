@@ -8,18 +8,20 @@ function TopArtists() {
     const navigate = useNavigate();
 
     let [filter, setFilter] = useState('longTerm');
+    let [loading, setLoading] = useState(true);
 
     useEffect(() => {
         Object.keys(data).forEach(key => {
             if (data[key] === null) navigate('/profile');
         });
+        setLoading(false);
         // eslint-disable-next-line
     }, [])
 
     return (
         <div className="container-main">
             <NavBar />
-            <div className="container-top-artists">
+            {!loading && <div className="container-top-artists">
                 <div className="top-artists-header">
                     <div className="top-artists-text">Top Artists</div>
                     <div className="filter-group">
@@ -44,12 +46,12 @@ function TopArtists() {
                     </div>
                 </div>
                 <div className="container-artists-main">
-                    {data.artists && data.artists[filter].map(el => <div key={el.id} className="top-artist-item">
+                    {data.artists[filter] && data.artists[filter].map(el => <div key={el.id} className="top-artist-item">
                         <img src={el.images[0].url} className="artist-photo" alt={el.name} />
                         <div className="artist-name">{el.name}</div>
                     </div>)}
                 </div>
-            </div>
+            </div>}
         </div>
 
     )

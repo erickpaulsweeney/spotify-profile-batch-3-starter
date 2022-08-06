@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const ENCODED = 'OTMyZTljMDI5MDc4NDJkZWIxODk1MWUzOWM2ZjQ3MmU6OTU2ZmFjZGU4M2Q2NDJhYWFjMGY0ZDMzODZhYmEwZjY=';
+// 'https://spotify-profile-mern.netlify.app/validate'
 
 export const getToken = createAsyncThunk('auth/getToken', async (code) => {
     console.log(code)
@@ -13,7 +14,7 @@ export const getToken = createAsyncThunk('auth/getToken', async (code) => {
         body: new URLSearchParams({
             'grant_type': 'authorization_code',
             'code': code,
-            'redirect_uri': 'https://spotify-profile-mern.netlify.app/validate'
+            'redirect_uri': 'http://localhost:3000/validate'
         }).toString()
     });
 
